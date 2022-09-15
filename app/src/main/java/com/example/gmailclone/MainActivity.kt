@@ -23,14 +23,16 @@ class MainActivity : AppCompatActivity() {
         emailsRv.layoutManager = LinearLayoutManager(this)
 
         findViewById<Button>(R.id.loadMoreBtn).setOnClickListener {
+            Log.i(TAG, "It was clicked")
             val newEmails = EmailFetcher.getNext5Emails()
             emails.addAll(newEmails)
             adapter.notifyItemRangeInserted(emails.size - newEmails.size, newEmails.size)
             emailsRv.smoothScrollToPosition(emails.size - newEmails.size)
         }
 
-        object {
-            val TAG = "MainActivity"
-        }
+
+    }
+    companion object {
+        val TAG = "MainActivity"
     }
 }
